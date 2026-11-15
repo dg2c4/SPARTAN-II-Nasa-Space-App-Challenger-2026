@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SPARTANS II · Mission Control</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&family=Cinzel:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/halo.css"><link rel="stylesheet" href="css/telemetry.css"><link rel="stylesheet" href="css/pro.css"><link rel="stylesheet" href="css/hud-cinema.css">
+<script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"}}</script>
+</head><body>
+<div id="intro"><canvas id="ic"></canvas><div class="t"><div class="langs"><button data-l="es">ES</button><button data-l="en">EN</button></div>
+<h1>SPARTANS<br>II</h1><div id="line"></div><button class="btn" id="start" data-i="start"></button></div></div>
+
+<header class="wrap"><a class="logo" href="#top"><i></i>SPARTANS II</a>
+<button id="burger" aria-label="Menu" aria-expanded="false" aria-controls="mainnav"><i></i><i></i><i></i></button><nav id="mainnav"><a href="#home" data-i="n0"></a><a href="#systems" data-i="nsys"></a><a href="#globe" data-i="nglobe"></a><a href="#astro" data-i="n2"></a><a href="#atlas" data-i="n1"></a><a href="#route" data-i="nroute"></a><a href="#rovers" data-i="nrov"></a><a href="#report" data-i="nrep"></a><a href="#sim" data-i="nsim"></a><a href="#guide" data-i="nguide"></a><a href="#data" data-i="n4"></a><span class="langs"><button data-l="es">ES</button><button data-l="en">EN</button></span></nav></header>
+
+<main id="top">
+<section id="home" class="scene">
+ <div class="pl" data-d=".04"><img src="assets/img/layer-sky.svg" alt=""></div>
+ <div class="pl" data-d=".14"><img src="assets/img/layer-far.svg" alt=""></div>
+ <div class="pl" data-d=".28"><img src="assets/img/layer-mid.svg" alt=""></div>
+ <canvas id="dust" aria-hidden="true"></canvas>
+ <div class="pl rovp" data-d=".55"><img src="assets/img/rover-perseverance.svg" alt=""></div>
+ <div class="pl" data-d=".8"><img src="assets/img/layer-near.svg" alt=""></div>
+ <div class="hero-horizon" aria-hidden="true"></div>
+ <aside class="msn hud" data-al-es="Estado de la misión" data-al-en="Mission status"><h4 class="mono" data-i="ms_h"></h4><dl class="mono"><dt data-i="ms_pl"></dt><dd data-i="ms_mars"></dd><dt data-i="ms_mi"></dt><dd data-i="ms_misv"></dd><dt data-i="ms_te"></dt><dd>SPARTANS II</dd><dt data-i="ms_st"></dt><dd><i class="dot"></i><span data-i="ms_op"></span></dd><dt data-i="ms_g"></dt><dd>3.71 m/s²</dd><dt data-i="ms_t"></dt><dd>≈ −63 °C</dd></dl><small class="mono" data-i="ms_note"></small></aside>
+ <div class="ttl"><p class="kk" data-i="ttl_k"></p><h1 id="ttl"></h1><p class="sb">SPARTANS II · NASA SPACE APPS CHALLENGE 2026</p><a class="btn" href="#systems" data-i="explore"></a></div>
+</section>
+
+<section id="systems" class="systems"><div class="wrap"><span class="kick mono" data-i="ksys"></span><h2 data-i="nsys"></h2><p class="sub" data-i="sysd"></p>
+ <div id="deck" class="deck" aria-roledescription="carousel"></div>
+ <div class="deckbar"><button class="gb" id="dprev"><i>◀</i> <span data-i="prev"></span></button><div id="dots" class="dots"></div><button class="gb" id="dnext"><span data-i="next"></span> <i>▶</i></button></div>
+</div></section>
+
+<section id="globe" class="hero globe"><canvas id="mars3d"></canvas>
+ <div class="wrap hero-grid">
+  <div class="copy"><span class="kick mono" data-i="gl_k"></span><h2 class="rv h1s" data-i="h1"></h2><p class="rv" data-i="lead"></p><a class="btn rv" href="#atlas" data-i="cta"></a>
+   <div class="mono hint" data-i="drag"></div></div>
+  <aside class="hud tele rv"><h4 class="mono" data-i="t_h"></h4>
+   <dl class="mono"><dt data-i="t_r"></dt><dd>3 389.5 km</dd><dt data-i="t_g"></dt><dd>3.71 m/s²</dd><dt data-i="t_t"></dt><dd>≈ −63 °C</dd><dt data-i="t_p"></dt><dd>687 d</dd><dt data-i="t_d"></dt><dd>24 h 37 min</dd>
+   <dt data-i="t_lat"></dt><dd id="clat">—</dd><dt data-i="t_lon"></dt><dd id="clon">—</dd></dl>
+   <h4 class="mono" data-i="moons"></h4><dl class="mono"><dt>Phobos</dt><dd>7.65 h</dd><dt>Deimos</dt><dd>30.3 h</dd></dl><small data-i="scale"></small></aside>
+  <aside class="hud tgt rv"><h4 class="mono" data-i="selh"></h4><div id="tgt" class="mono"></div></aside>
+ </div></section>
+
+<section id="atlas" class="wrap split rv">
+ <div class="txt"><span class="kick mono" data-i="at_k"></span><h2 data-i="n1"></h2><p data-i="atlasd"></p><div id="layers" class="row"></div><span id="dsrc" class="chip sim"></span><select id="goto" class="goto"></select><div id="info" class="hud"></div><p class="note mono" data-i="mapnote"></p>
+ <div class="hud rtp"><div class="pt"><b class="ma">A</b><div><small class="mono" data-i="pa"></small><input id="ra" data-ph-es="lat, lon · ej. 18.4, 77.5" data-ph-en="lat, lon · e.g. 18.4, 77.5" data-al-es="Coordenadas del origen" data-al-en="Origin coordinates"><select id="sa" data-al-es="Sitio de origen" data-al-en="Origin site"></select><span class="err" id="rea"></span></div><button class="pk" data-p="A" data-tt-es="Elegir A en el mapa" data-tt-en="Pick A on the map" data-al-es="Elegir A en el mapa" data-al-en="Pick A on the map">⌖</button></div>
+ <div class="pt"><b class="mb">B</b><div><small class="mono" data-i="pb"></small><input id="rb" data-ph-es="lat, lon · ej. -5.4, 137.8" data-ph-en="lat, lon · e.g. -5.4, 137.8" data-al-es="Coordenadas del destino" data-al-en="Destination coordinates"><select id="sb" data-al-es="Sitio de destino" data-al-en="Destination site"></select><span class="err" id="reb"></span></div><button class="pk" data-p="B" data-tt-es="Elegir B en el mapa" data-tt-en="Pick B on the map" data-al-es="Elegir B en el mapa" data-al-en="Pick B on the map">⌖</button></div>
+ <div class="rtb"><button id="rsw" data-i="rsw"></button><button id="rcl" data-i="rcl"></button></div></div></div>
+ <div class="hud frame"><div id="mapwrap"><canvas id="map" tabindex="0"></canvas><div class="mapctl"><button id="zin">+</button><button id="zout">−</button><button id="zhome">⌂</button><button id="zfs">⛶</button></div><div id="hud" class="mono"></div></div></div>
+</section>
+<section id="route" class="wrap"><div class="sph"><span class="kick mono" data-i="rt_k"></span><h2 data-i="nroute"></h2><p data-i="rt_d"></p></div>
+ <div class="route-stage"><div class="hud terrain3d-card"><canvas id="terrain3d"></canvas><div class="terrain3d-badge mono" data-i="rt_badge"></div></div><div class="hud rtpar" id="rtpar"></div></div>
+ <div id="rtres"></div></section>
+
+<section id="astro" class="wrap sp">
+ <div class="sph"><span class="kick mono" data-i="n2"></span><h2 data-i="k2"></h2><p data-i="astrod"></p></div>
+ <div class="spg">
+  <div class="hud form">
+   <h4 class="mono" data-i="sp_sex"></h4><div id="sexs" class="sexrow"></div>
+   <h4 class="mono" data-i="sp_age"></h4><div class="agrow"><b><span id="agv">35</span></b><span id="agc"></span></div><input id="ag" type="range" min="0" max="100" value="35" data-al-es="Edad en años" data-al-en="Age in years">
+   <h4 class="mono" data-i="sp_body"></h4><div class="in2"><div><div class="u"><input id="wt" type="number" value="75" min="2" max="250" step="0.1" inputmode="decimal" data-al-es="Peso en kg" data-al-en="Weight in kg"><em>kg</em></div><small class="err" id="wte"></small></div><div><div class="u"><input id="ht" type="number" value="175" min="40" max="250" step="1" inputmode="decimal" data-al-es="Estatura en cm" data-al-en="Height in cm"><em>cm</em></div><small class="err" id="hte"></small></div></div>
+   <h4 class="mono" data-i="sp_act"></h4><div id="acts" class="acg"></div>
+   <h4 class="mono" data-i="sp_dur"></h4><div class="u"><input id="dy" type="number" value="30" min="1" max="3000" step="1" inputmode="numeric" data-al-es="Días de misión" data-al-en="Mission days"><em data-i="sp_days"></em></div><small class="err" id="dye"></small>
+   <h4 class="mono"><span data-i="sp_res"></span> <span id="rsv" style="color:var(--amber)"></span></h4><input id="rs" type="range" min="0" max="100" step="5" value="20" data-al-es="Reserva de oxígeno" data-al-en="Oxygen reserve">
+   <p class="note mono" data-i="sp_legend"></p></div>
+  <div class="spr"><div class="hud bodyw" id="bodyw"></div><div class="sp-right"><div id="res" class="resg"></div><div class="hud organ" id="organ"></div></div><div class="chs"><div class="hud"><canvas id="ch1"></canvas></div><div class="hud"><canvas id="ch2"></canvas></div></div><p class="note mono sp-foot" data-i="sp_foot"></p></div>
+ </div></section>
+
+<section id="rovers" class="wrap rv"><span class="kick mono" data-i="krov"></span><h2 data-i="nrov"></h2><p class="sub" data-i="rovd"></p><div id="rovs" class="rovgrid"></div><div id="rx"></div></section>
+
+<section id="sim" class="wrap"><span class="kick mono" data-i="nsim"></span><h2 data-i="n3"></h2><p data-i="simd"></p>
+ <div class="hud frame trailer"><video id="trailer" controls playsinline preload="metadata" poster="assets/video/trailer-poster.jpg" aria-label="Trailer"><source src="assets/video/trailer.mp4" type="video/mp4"></video></div>
+ <div class="row simcta"><a class="btn" id="playgame" href="https://spartan-ii-the-gamme.vercel.app/" target="_blank" rel="noopener" data-i="sim_play"></a></div><p class="note mono" data-i="sim_note"></p></section>
+
+<section id="guide" class="guide"><iframe id="guideframe" src="guia/index.html" title="Survival Guide" loading="lazy" allow="fullscreen"></iframe></section>
+<section id="data" class="wrap rv"><span class="kick mono" data-i="dt_k"></span><h2 data-i="k4"></h2><p data-i="datad"></p><div id="sci" class="scig"></div><div id="src" class="grid"></div></section>
+<section id="report" class="wrap"><div class="sph"><span class="kick mono" data-i="rp_k"></span><h2 data-i="rp_h"></h2><p data-i="rp_d"></p></div>
+ <div id="rep" class="resg"></div><p><button class="btn" id="pdf" data-i="rp_btn"></button></p><p class="note mono" id="repn"></p><p class="note mono" data-i="rp_note"></p></section>
+</main>
+<footer class="wrap mono"><span>SPARTANS II</span><span>NASA · PDS · USGS · JPL</span><span data-i="foot"></span></footer>
+
+<aside id="tlm" class="hud mono" data-al-es="Telemetría" data-al-en="Telemetry"><h4 data-i="t_h"></h4><dl><dt data-i="t_r"></dt><dd>3 389.5 km</dd><dt data-i="t_g"></dt><dd>3.71 m/s²</dd><dt data-i="t_t"></dt><dd>≈ −63 °C</dd><dt data-i="t_st"></dt><dd>−140 … 20 °C</dd><dt data-i="t_p"></dt><dd>687 d</dd><dt data-i="t_d"></dt><dd>24 h 37 min</dd><dt data-i="t_lat"></dt><dd id="tlat">0.0°</dd><dt data-i="t_lon"></dt><dd id="tlon">-1.8°</dd><dt data-i="t_as"></dt><dd id="tl1">—</dd><dt data-i="t_rt"></dt><dd id="tl2">—</dd></dl><h4 data-i="moons"></h4><dl><dt>Phobos</dt><dd>7.65 h</dd><dt>Deimos</dt><dd>30.3 h</dd></dl><small data-i="t_ref"></small><h4 data-i="selh"></h4><div id="tltgt" class="tltgt"></div></aside>
+<script src="js/sources.js"></script><script src="js/i18n.js"></script><script src="js/atlas.js"></script>
+<script src="js/survival.js"></script><script src="js/motion.js"></script><script src="js/scene.js"></script><script src="js/cards.js"></script><script src="js/route.js"></script><script src="js/rovers2.js"></script><script src="js/report.js"></script><script src="js/intro.js"></script>
+<script src="js/tabs.js"></script><script src="js/telemetry.js"></script><script type="module" src="js/mars3d.js"></script>
+</body></html>
