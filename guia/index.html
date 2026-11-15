@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SPARTAN-II · Guía de supervivencia / Survival Guide</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800&family=IBM+Plex+Sans:wght@300;400;500&display=swap">
+<style>
+:root{--bg:#050507;--bg2:#141518;--ti:#2A2D34;--mt:#111215;--red:#FF1E27;--or:#FF5E00;--tx:#D1D5DB;--hd:'Orbitron','Arial Black',sans-serif;--bd:'IBM Plex Sans',system-ui,sans-serif}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%;overflow:hidden;background:var(--bg);color:var(--tx);font:300 1rem/1.65 var(--bd)}
+#app{position:relative;height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;background:radial-gradient(ellipse at 50% 30%,var(--bg2),var(--bg) 72%);overflow:hidden;isolation:isolate}
+#dust{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+#mars{position:absolute;z-index:1;width:min(92%,60rem);aspect-ratio:1;border-radius:50%;left:var(--x,50%);top:var(--y,62%);transform:translateX(-50%) scale(var(--s,1));transform-origin:50% 0;transition:left 1.4s cubic-bezier(.7,0,.2,1),top 1.4s cubic-bezier(.7,0,.2,1),transform 1.4s cubic-bezier(.7,0,.2,1);background:radial-gradient(circle at 35% 25%,#5a3a30,#2a1c1a 45%,#0b0809 75%);box-shadow:0 0 0 2px rgba(255,94,0,.55),0 -10px 90px 6px rgba(255,94,0,.5),0 -40px 160px rgba(255,30,39,.26),inset 0 18px 60px rgba(255,94,0,.35);overflow:hidden;pointer-events:none}
+#mars::after{content:"";position:absolute;inset:0;background:repeating-radial-gradient(circle at 60% 20%,transparent 0 2.4rem,rgba(0,0,0,.14) 2.5rem 2.6rem)}
+nav.top{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;gap:.75rem;padding:.9rem clamp(.75rem,4%,3rem);flex-wrap:wrap}
+.logo{font:700 .8rem var(--hd);letter-spacing:.2em;color:#fff}
+.links{display:flex;gap:1.2rem;flex-wrap:wrap;font-size:.8rem}
+.links button{background:none;border:0;color:var(--tx);cursor:pointer;font:inherit;opacity:.7;padding:.2rem 0}.links button:hover,.links button.on{opacity:1;color:#fff}
+.right{display:flex;gap:.6rem;align-items:center}
+.pill,.lg button{border:1px solid var(--or);color:#fff;background:rgba(255,94,0,.08);border-radius:99px;cursor:pointer;font:500 .8rem var(--bd);box-shadow:0 0 16px rgba(255,94,0,.45),inset 0 0 12px rgba(255,30,39,.22)}
+.pill{padding:.55rem 1.2rem}
+.lg{display:flex;gap:.3rem}.lg button{padding:.35rem .7rem;box-shadow:none;opacity:.6}.lg button.on{opacity:1;box-shadow:0 0 12px rgba(255,94,0,.5)}
+body.embed .logo,body.embed .pill,body.embed .lg{display:none}
+#stage{position:relative;z-index:3;min-height:0}
+.slide{position:absolute;inset:0;padding:clamp(.75rem,3vh,2rem) clamp(1rem,6%,5rem);display:flex;flex-direction:column;justify-content:center;opacity:0;pointer-events:none;overflow-y:auto;overflow-x:hidden;visibility:hidden;transition:opacity .5s}
+.slide.on{opacity:1;pointer-events:auto;visibility:visible}
+.slide>*{max-width:68rem;width:100%;margin-left:0;margin-right:auto;flex:none}
+.slide::before,.slide::after{content:"";margin:auto 0;flex:none;height:0}
+.mask{overflow:hidden;display:block;padding-bottom:.1em}.mask>span{display:block;transform:translateY(110%);transition:transform .9s cubic-bezier(.2,.8,.2,1)}
+.on .mask>span{transform:none}.on .mask:nth-child(2)>span{transition-delay:.12s}.on .mask:nth-child(3)>span{transition-delay:.24s}
+.cat{color:var(--or);font-size:.82rem;letter-spacing:.14em;margin-bottom:.5rem}
+h1,h2{font:700 clamp(1.4rem,4.2vw,3.2rem)/1.15 var(--hd);letter-spacing:.06em;color:#fff;text-transform:uppercase;overflow-wrap:anywhere}
+h1{font-size:clamp(1.8rem,6.4vw,4.8rem)}
+.sub{margin-top:.8rem;max-width:36rem;font-size:1.05rem}
+.tabs{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.4rem 0 .9rem}
+.tabs button{background:var(--mt);border:1px solid var(--ti);color:var(--tx);padding:.5rem 1rem;border-radius:99px;cursor:pointer;font:400 .82rem var(--bd);transition:.25s}
+.tabs button.on{border-color:var(--or);color:#fff;box-shadow:0 0 16px rgba(255,94,0,.45)}
+.panel{background:rgba(17,18,21,.8);backdrop-filter:blur(8px);border:1px solid var(--ti);border-left:2px solid var(--or);border-radius:.9rem;padding:1.1rem 1.4rem;max-width:44rem}
+.panel ul{list-style:none;padding:0}.panel li{padding:.3rem 0 .3rem 1.1rem;position:relative}
+.panel li::before{content:"";position:absolute;left:0;top:.95rem;width:.4rem;height:.4rem;border-radius:50%;background:var(--or);box-shadow:0 0 8px var(--or)}
+.q{margin-top:1.3rem;max-width:38rem;color:#fff;font-size:1.1rem;font-style:italic;border-left:2px solid var(--red);padding-left:1rem}
+.idx{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,15rem),1fr));gap:.5rem;margin-top:1.3rem}
+.idx button{text-align:left;background:var(--mt);border:1px solid var(--ti);color:var(--tx);padding:.7rem 1rem;border-radius:.75rem;cursor:pointer;font:400 .88rem var(--bd);transition:.25s}
+.idx button:hover{border-color:var(--or);color:#fff;box-shadow:0 0 14px rgba(255,94,0,.35)}
+.ctl{position:relative;z-index:5;display:flex;align-items:center;gap:1rem;padding:.8rem clamp(.75rem,4%,3rem)}
+.bar{flex:1;height:2px;background:var(--ti);border-radius:2px;overflow:hidden}.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--red),var(--or));box-shadow:0 0 10px var(--or);transition:width .6s}
+.ctl button{width:2.6rem;height:2.6rem;border-radius:50%;border:1px solid var(--ti);background:var(--mt);color:#fff;cursor:pointer;font-size:1rem}.ctl button:hover{border-color:var(--or);box-shadow:0 0 14px rgba(255,94,0,.5)}
+.cnt{font-size:.75rem;letter-spacing:.1em;min-width:3.5rem;text-align:right}
+button:focus-visible{outline:2px solid var(--or);outline-offset:2px}
+@media(max-width:760px){.links{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div id="app"><canvas id="dust" aria-hidden="true"></canvas><div id="mars" aria-hidden="true"></div>
+<nav class="top"><div class="logo">SPARTAN·II</div><div class="links" id="links"></div><div class="right"><div class="lg"><button data-l="es">ES</button><button data-l="en">EN</button></div><button class="pill" id="explore"></button></div></nav>
+<main id="stage"></main>
+<div class="ctl"><button id="prev">←</button><div class="bar"><i id="pb"></i></div><span class="cnt" id="cn"></span><button id="next">→</button></div></div>
+<script src="data.js"></script>
+<script>
+const G=window.GUIDE,N=G.layout.length,UI={es:{ex:"Explorar",st:"Comenzar misión",bk:"Volver al inicio",pv:"Anterior",nx:"Siguiente",nav:["Misión","Equipo","RIDGE","Emergencia","Regreso"],ti:"SPARTAN-II · Guía de supervivencia"},en:{ex:"Explore",st:"Start mission",bk:"Back to start",pv:"Previous",nx:"Next",nav:["Mission","Team","RIDGE","Emergency","Return"],ti:"SPARTAN-II · Survival Guide"}};
+const NAVI=[2,3,11,15,17],$=s=>document.querySelector(s),st=$('#stage');let cur=0,lang='es';
+try{lang=localStorage.getItem('guideLang')||''}catch(e){lang=''}
+if(lang!=='en'&&lang!=='es')lang=(navigator.language||'es').slice(0,2)==='en'?'en':'es';
+const qp=new URLSearchParams(location.search).get('lang');if(qp==='en'||qp==='es')lang=qp;
+if(self!==top)document.body.classList.add('embed');
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+function build(){const D=G[lang],u=UI[lang];st.innerHTML='';
+D.forEach((d,i)=>{const l=G.layout[i],e=document.createElement('section');e.className='slide'+(i===cur?' on':'');
+let h=`<div class="mask cat"><span>${esc(d.c)}</span></div><div class="mask"><span>${l.k?'<h1>':'<h2>'}${esc(d.t)}${l.k?'</h1>':'</h2>'}</span></div>`;
+if(d.s)h+=`<div class="mask"><span class="sub">${esc(d.s)}</span></div>`;
+if(l.idx)h+='<div class="idx">'+D.map((x,j)=>j>1&&j<N-1?`<button data-g="${j}">${esc(x.c)}</button>`:'').join('')+'</div>';
+if(d.tabs){const k=Object.keys(d.tabs);h+=`<div class="tabs" role="tablist">${k.map((n,j)=>`<button role="tab" class="${j?'':'on'}" data-j="${j}">${esc(n)}</button>`).join('')}</div><div class="panel" role="tabpanel"></div>`}
+if(d.q)h+=`<p class="q">${esc(d.q)}</p>`;
+if(l.k)h+=`<div style="margin-top:1.6rem"><button class="pill" data-g="${i?0:2}">${i?u.bk:u.st}</button></div>`;
+e.innerHTML=h;st.appendChild(e);
+if(d.tabs){const k=Object.keys(d.tabs),p=e.querySelector('.panel'),bs=[...e.querySelectorAll('.tabs button')],sh=j=>{p.innerHTML='<ul>'+d.tabs[k[j]].map(t=>`<li>${esc(t)}</li>`).join('')+'</ul>';bs.forEach((b,n)=>{b.classList.toggle('on',n===j);b.setAttribute('aria-selected',n===j)})};sh(0);bs.forEach(b=>b.onclick=()=>sh(+b.dataset.j))}
+e.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>go(+b.dataset.g))});
+$('#links').innerHTML=u.nav.map((n,j)=>`<button data-g="${NAVI[j]}">${n}</button>`).join('');
+$('#links').querySelectorAll('button').forEach(b=>b.onclick=()=>go(+b.dataset.g));
+$('#explore').textContent=u.ex;$('#prev').setAttribute('aria-label',u.pv);$('#next').setAttribute('aria-label',u.nx);
+document.documentElement.lang=lang;document.title=u.ti;
+document.querySelectorAll('.lg button').forEach(b=>b.classList.toggle('on',b.dataset.l===lang))}
+function go(n){if(n>=N)n=0;if(n<0)n=0;cur=n;[...st.children].forEach((e,i)=>{e.classList.toggle('on',i===n);if(i===n)e.scrollTop=0});
+const l=G.layout[n],a=$('#app').style;a.setProperty('--x',l.x||'50%');a.setProperty('--y',l.y||'62%');a.setProperty('--s',l.s2||1);
+$('#pb').style.width=(n/(N-1)*100)+'%';$('#cn').textContent=(n+1)+' / '+N;
+try{history.replaceState(null,'','#s'+(n+1))}catch(e){}}
+function setLang(l){if(l!=='es'&&l!=='en')return;lang=l;try{localStorage.setItem('guideLang',l)}catch(e){}build();go(cur)}
+/* posiciones de Marte como % del contenedor (independientes del zoom) */
+G.layout.forEach(l=>{const m=s=>(s||'').toString();l.x=l.x?(50+parseFloat(l.x)*.45)+'%':'50%';l.y=l.y?(parseFloat(l.y)*(l.y.includes('vh')?1:1))+'%':'62%'});
+$('#prev').onclick=()=>go(cur-1);$('#next').onclick=()=>go(cur+1);$('#explore').onclick=()=>go(2);
+document.querySelectorAll('.lg button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+addEventListener('keydown',e=>{if(e.target.closest&&e.target.closest('.tabs'))return;if(['ArrowRight','PageDown'].includes(e.key))go(cur+1);if(['ArrowLeft','PageUp'].includes(e.key))go(cur-1)});
+let tx=0,ty=0;addEventListener('touchstart',e=>{tx=e.touches[0].clientX;ty=e.touches[0].clientY},{passive:true});addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx,dy=e.changedTouches[0].clientY-ty;if(Math.abs(dx)>70&&Math.abs(dx)>Math.abs(dy)*1.5)go(cur+(dx<0?1:-1))});
+addEventListener('message',e=>{if(e.origin===location.origin&&e.data&&e.data.type==='guide-lang')setLang(e.data.lang)});
+/* polvo marciano */
+const cv=$('#dust'),cx=cv.getContext('2d');let P=[],raf;
+function rs(){const r=cv.getBoundingClientRect(),d=Math.min(devicePixelRatio||1,2);cv.width=r.width*d;cv.height=r.height*d;P=Array.from({length:80},()=>({x:Math.random()*cv.width,y:Math.random()*cv.height,r:(Math.random()*1.6+.3)*d,v:(Math.random()*.3+.05)*d,o:Math.random()*.5+.15}))}
+function tick(){cx.clearRect(0,0,cv.width,cv.height);P.forEach(p=>{p.x+=p.v;p.y-=p.v*.3;if(p.x>cv.width)p.x=0;if(p.y<0)p.y=cv.height;cx.fillStyle=`rgba(255,${120+p.r*20|0},60,${p.o})`;cx.beginPath();cx.arc(p.x,p.y,p.r,0,7);cx.fill()});raf=requestAnimationFrame(tick)}
+rs();addEventListener('resize',rs);if(!matchMedia('(prefers-reduced-motion:reduce)').matches)tick();
+cur=Math.min(N-1,Math.max(0,(parseInt(location.hash.slice(2))||1)-1));build();go(cur);
+</script></body></html>

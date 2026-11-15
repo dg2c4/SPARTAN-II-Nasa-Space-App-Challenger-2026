@@ -1,0 +1,60 @@
+/* SPARTANS II · capa de diseño profesional (se carga al final). Sora = títulos · IBM Plex Sans = texto · IBM Plex Mono = datos */
+:root{--f-display:'Sora',system-ui,sans-serif;--f-title:'Sora',system-ui,sans-serif;--f-cond:'Sora',system-ui,sans-serif;--f-body:'IBM Plex Sans',system-ui,sans-serif;--f-mono:'IBM Plex Mono',ui-monospace,monospace;
+--line:rgba(242,237,242,.12);--panel:rgba(13,10,9,.78);--txt:#EFE8EC;--mut:#B9AAB0}
+html{scroll-behavior:smooth}body{font:400 15px/1.65 var(--f-body);color:var(--txt);-webkit-font-smoothing:antialiased;letter-spacing:0}
+h1,h2,h3,h4{font-family:var(--f-display);font-weight:600;text-transform:none}
+h2{font-size:clamp(1.7rem,2.6vw,2.4rem);line-height:1.15;letter-spacing:-.015em;margin:.3em 0 .4em}
+h3{font-size:1.15rem;letter-spacing:-.005em}h4{font-size:.78rem;font-weight:600;letter-spacing:.04em;color:var(--amber)}
+p,.sub,.sph p{max-width:68ch;color:var(--mut);line-height:1.65}
+.mono,dl.mono,.rw,.note,small{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.note,small{font-size:11.5px;line-height:1.55;color:var(--mut);letter-spacing:0}
+.kick,.kk{font:500 12px var(--f-mono);letter-spacing:.08em;color:var(--neon);text-transform:none}
+/* cabecera y menú */
+header{background:linear-gradient(#090A12ee,#090A12b8);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{font:600 14px var(--f-display);letter-spacing:.08em}
+nav{gap:4px}nav a{font:500 13px var(--f-body);letter-spacing:0;text-transform:none;padding:8px 12px;border-radius:4px;color:var(--mut);border-bottom:2px solid transparent;transition:color .2s,border-color .2s}
+nav a:hover{color:var(--txt)}nav a.on,nav a.act,nav a.active,nav a[aria-current]{color:var(--txt);border-bottom-color:var(--neon)}
+/* portada */
+#ttl{font:600 clamp(2.4rem,7vw,5.6rem);font-family:var(--f-display);letter-spacing:.07em;line-height:1.05}
+.ttl .sb{font:500 13px var(--f-mono);letter-spacing:.06em;color:var(--mut)}
+/* paneles y botones: más limpios, sin brillos */
+.hud{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:none;backdrop-filter:blur(8px)}
+.hud:before,.hud:after{display:none}
+.btn,.gb,button.pk{font:600 13px var(--f-body);letter-spacing:.02em;text-transform:none;clip-path:none;border-radius:6px;padding:12px 24px;background:var(--terra);color:#FFFFFF;box-shadow:none;transition:background .2s}
+.btn:hover{background:var(--neon);transform:none;box-shadow:none}
+button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,canvas:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+/* campos de formulario uniformes */
+input,select{font:400 14px var(--f-mono);color:var(--txt);background:rgba(255,255,255,.05);border:1px solid var(--line);border-radius:6px;padding:9px 11px;width:100%;box-sizing:border-box}
+input[type=range]{padding:0;background:none;border:0;accent-color:var(--neon)}
+input:focus,select:focus{border-color:var(--amber);outline:none}input.bad{border-color:var(--bad)}
+.err{display:block;min-height:1em;color:var(--bad);font:11px var(--f-mono)}
+.u{position:relative;display:flex;align-items:center}.u em{position:absolute;right:12px;font:normal 12px var(--f-mono);color:var(--mut)}.u input{padding-right:46px}
+/* Survival: formulario ordenado por secciones */
+.form{display:flex;flex-direction:column;gap:6px;padding:22px}
+.form h4{margin:18px 0 8px;padding-top:16px;border-top:1px solid var(--line);color:var(--txt);font-size:.82rem}
+.form h4:first-child{margin-top:0;padding-top:0;border-top:0}
+.agrow{display:flex;align-items:baseline;gap:10px}.agrow b{font:600 1.6rem var(--f-display)}.agrow #agc{color:var(--mut);font-size:12px}
+.in2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.acg{display:flex;flex-direction:column;gap:8px}.acb{text-align:left;padding:10px 12px;border-radius:6px}
+.acb b{font:600 13px var(--f-body);letter-spacing:0;text-transform:none}.acb small{display:block;font:12px var(--f-body);color:var(--mut)}
+.sexb span{font:500 12px var(--f-body);letter-spacing:0}
+/* resultados: etiqueta a la izquierda, valor a la derecha */
+.rw{font-size:12.5px;padding:7px 0;border-bottom:1px solid var(--line)}.rw span{color:var(--mut)}.rw b{font-weight:500;color:var(--txt)}.rw em{font-style:normal;color:var(--mut);margin-left:4px}
+.rc{padding:18px}.rc h4{margin:0 0 10px;color:var(--amber)}
+.st{font:600 11px var(--f-body);letter-spacing:.02em;text-transform:none;border-radius:4px;padding:2px 8px}
+/* Ruta: A/B en dos columnas y parámetros en cuadrícula */
+.rtp{padding:18px;gap:14px}.rtp .pt{display:grid;grid-template-columns:36px 1fr 40px;gap:12px;align-items:start}
+.rtp .pt>div{display:grid;gap:6px}.rtp small{font:500 12px var(--f-body);letter-spacing:0;color:var(--mut)}
+.rtp .pk{padding:0;width:40px;height:40px;margin-top:20px;border-radius:6px}
+.rtpar{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px 32px;padding:22px}
+.rtpar label{display:grid;grid-template-columns:1fr auto;gap:6px 10px;font:500 13px var(--f-body);color:var(--txt)}.rtpar label output{font:12px var(--f-mono);color:var(--amber)}.rtpar label input{grid-column:1/-1}
+.cmp{width:100%;border-collapse:collapse;font:13px var(--f-body)}.cmp th{font:600 12px var(--f-body);text-align:left;color:var(--amber)}.cmp td,.cmp th{padding:9px 10px;border-bottom:1px solid var(--line)}
+/* Atlas */
+#layers{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 8px}#layers button{font:500 13px var(--f-body);letter-spacing:0;text-transform:none;border-radius:6px;padding:8px 14px}
+.goto{margin:8px 0 14px}#info{padding:16px;margin:12px 0;font-size:14px}
+/* informe y archivo */
+.sc{padding:20px}.sc h3{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.sc dl{display:grid;grid-template-columns:110px 1fr;gap:6px 14px;font-size:13px}.sc dt{color:var(--mut)}.sc dd{margin:0}
+.chip{font:500 11px var(--f-mono);letter-spacing:0;text-transform:none;border-radius:4px}
+section{scroll-margin-top:72px}
+@media(max-width:900px){.rtpar{grid-template-columns:1fr 1fr}.spg{grid-template-columns:1fr}}
+@media(max-width:560px){.rtpar{grid-template-columns:1fr}nav a{padding:8px}}
