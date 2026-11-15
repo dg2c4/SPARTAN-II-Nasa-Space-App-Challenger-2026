@@ -1,0 +1,5 @@
+#tlm{position:fixed;right:14px;bottom:14px;z-index:40;width:200px;padding:10px 12px;font-size:11px;pointer-events:none}
+#tlm h4{margin:0 0 6px;color:var(--amber,#FFB45E);font-size:10px;letter-spacing:.14em}#tlm dl{display:grid;grid-template-columns:auto 1fr;gap:2px 10px;margin:0}
+#tlm dt{opacity:.65}#tlm dd{margin:0;text-align:right}#tlm small{display:block;margin-top:6px;opacity:.55;font-size:9px}
+.chip.real{color:#FFD166;border-color:#FFD166}.chip.sim{color:#FFB45E;border-color:#FFB45E}#dsrc{display:inline-block;margin:6px 0;padding:2px 8px;border:1px solid;font:10px var(--f-mono)}
+@media(max-width:700px){#tlm{display:none}}
