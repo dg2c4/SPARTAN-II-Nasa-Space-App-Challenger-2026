@@ -1,0 +1,22 @@
+ENG: Attached, you will find all the download links for the programs and tools used.
+ES: Adjunto encontraras todos los enlaces de descarga de los programas y herramientas utilizadas.
+
+Download´s:
+
+- Download Google Drive:
+https://ipv4.google.com/intl/es/drive/download/
+
+- Download GitHub:
+https://docs.github.com/es/desktop/installing-and-authenticating-to-github-desktop/installing-github-desktop
+
+- Dowload GitKraken:
+https://www.gitkraken.com/download
+
+- Download Git:
+https://git-scm.com/install/windows
+
+- Download GitHub Deskop:
+https://github.com/apps/desktop?locale=es-419
+
+- Dowload Godo:
+https://godotengine.org/es/
